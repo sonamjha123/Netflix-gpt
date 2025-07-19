@@ -7,12 +7,20 @@
 - Sign Up Form
 - Form Validation
 - useRef Hook
-
-Firebase: 
+- Firebase Setup 
 npm install -g firebase-tools
+- Deploy App to  production
+- Create Sign Up user Account in Firebase
+- Password Authentication in Firebase 
+- Implement Sign in User API
+- Created reduxStore with userSlice ->
+- Set up Redux Store for user informations
+  - npm i @reduxjs/toolkit
+  - npm i react-redux
 
-- Deploy to Firebase Hosting
 
+
+Note:
 You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.
 
 1.Sign in to Google - $ firebase login
@@ -23,8 +31,6 @@ Put your static files (e.g., HTML, CSS, JS) in your app's deploy directory (the 
 
 - $ firebase deploy
 After deploying, view your app at : netflixgpt-b45b2.web.app
-
-Need help? Check out the Hosting docs
 
 
 # Features
