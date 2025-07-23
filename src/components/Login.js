@@ -2,11 +2,17 @@ import React from "react";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidateData } from "../utils/validate";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword,  } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../utils/firebase"; // Ensure you have your Firebase configuration set up
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
-
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [isSignintoggle, setIsSignintoToggle] = useState(false);
   const [errorMessaqe, setErrorMessage] = useState("");
@@ -24,31 +30,28 @@ const Login = () => {
 
   const handleToggle = () => {
     setIsSignintoToggle(!isSignintoggle);
-  
   };
 
   //checking validation of form
   const hanldeClickValidate = () => {
-    
-  const email = emailRef.current.value;
-  const password = passwordRef.current.value;
-  const fullname = fullnameRef.current?.value || "";
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const fullname = fullnameRef.current?.value || "";
 
-  const message = checkValidateData(email, password, fullname, isSignintoggle);
+    const message = checkValidateData(
+      email,
+      password,
+      fullname,
+      isSignintoggle
+    );
 
-  if (message) {
-    setErrorMessage(message);
-    return;
-  }
+    if (message) {
+      setErrorMessage(message);
+      return;
+    }
 
-  setErrorMessage("");
-
-    // If no error message, proceed with sign-in or sign-up logic
-    // based on the value of the isSignintoggle state variable
+    setErrorMessage("");
     if (isSignintoggle) {
-      // Sign Up Logic
-      // Use the createUserWithEmailAndPassword method from the Firebase SDK
-      // to create a new user with the email and password input values
       createUserWithEmailAndPassword(
         auth,
         emailRef.current.value,
@@ -57,10 +60,33 @@ const Login = () => {
         .then((userCredential) => {
           // If the sign-up is successful, log the user object to the console
           const user = userCredential.user;
-          navigate("/"); // Navigate to the browse page after successful sign-up
+          // update users profile using updateProfile API
+          updateProfile(user, {
+            displayName: fullnameRef.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/58945854?v=4",
+          })
+            .then(() => {
+              //dispatch here again for displayname and photoURL
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              
+              // Sign in case
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              // navigate after my Profile updated!
+              navigate("/browse");
+              
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
-          // If the sign-up fails, log the error message to the console
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + " " + errorMessage);
@@ -94,10 +120,9 @@ const Login = () => {
         <img
           className="w-full h-full"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/FR-en-20250630-TRIFECTA-perspective_70e52842-38a0-4ff9-841d-117202b467d4_small.jpg"
-          alt="Netflix image"
+          alt="Netflix promotional background"
         />
       </div>
-      {/* <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md mx-auto mt-8 p-6 bg-white rounded shadow"> */}
       <form
         onSubmit={(e) => e.preventDefault()}
         className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 -left-0 bg-opacity-80 rounded shadow-lg"
@@ -105,12 +130,6 @@ const Login = () => {
         <h1 className="text-3xl font-bold text-white mb-6 py-4">
           {isSignintoggle ? "Sign Up" : "Sign In"}
         </h1>
-        <input
-          ref={emailRef}
-          type="text"
-          placeholder="Email or mobile number"
-          className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
-        />
         {isSignintoggle && (
           <input
             ref={fullnameRef}
@@ -119,6 +138,13 @@ const Login = () => {
             className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
           />
         )}
+        <input
+          ref={emailRef}
+          type="text"
+          placeholder="Email or mobile number"
+          className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
+        />
+
         <input
           ref={passwordRef}
           type="password"

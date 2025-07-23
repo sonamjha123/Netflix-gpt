@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const appRouter = createBrowserRouter([
     {
@@ -22,23 +22,28 @@ const dispatch = useDispatch();
       element: <Browse />,
     },
   ]);
-//Get the currently signed-in user 
-//onAuthStateChanged` is used to listen for changes in the user's authentication state
-// why use used useEffect here? to ensure that the authentication state is checked when the component mounts
+  //Get the currently signed-in user
+  //onAuthStateChanged` is used to listen for changes in the user's authentication state
+  // why use used useEffect here? to ensure that the authentication state is checked when the component mounts
   // and to dispatch the appropriate actions based on whether a user is signed in or not.
-useEffect(() => { 
- onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const { uid , email , displayName} = user; 
-      // Sign in case
-      dispatch(addUser({uid: uid, email: email, displayName: displayName}));
-      
-    } else {
-      dispatch(removeUser())
-     
-    }
-  });
-}, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        // Sign in case
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+      } else {
+        dispatch(removeUser());
+      }
+    });
+  }, []);
   return (
     <div>
       <RouterProvider router={appRouter} />

@@ -18,6 +18,8 @@ npm install -g firebase-tools
   - npm i @reduxjs/toolkit
   - npm i react-redux
 
+- Implemented SignOut
+- Implemented Profile update
 
 
 Note:
