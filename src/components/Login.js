@@ -2,18 +2,17 @@ import React from "react";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidateData } from "../utils/validate";
+import { photoURL } from "../utils/constants";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase"; // Ensure you have your Firebase configuration set up
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
   const [isSignintoggle, setIsSignintoToggle] = useState(false);
   const [errorMessaqe, setErrorMessage] = useState("");
 
@@ -63,13 +62,12 @@ const Login = () => {
           // update users profile using updateProfile API
           updateProfile(user, {
             displayName: fullnameRef.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/58945854?v=4",
-          })
-            .then(() => {
+            photoURL: photoURL,
+          }).then(() => {
               //dispatch here again for displayname and photoURL
               const { uid, email, displayName, photoURL } = auth.currentUser;
-              
               // Sign in case
+              
               dispatch(
                 addUser({
                   uid: uid,
@@ -78,8 +76,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              // navigate after my Profile updated!
-              navigate("/browse");
+             
               
             })
             .catch((error) => {
@@ -103,7 +100,6 @@ const Login = () => {
         .then((userCredential) => {
           // If the sign-in is successful, log the user object to the console
           const user = userCredential.user;
-          navigate("/browse"); // Navigate to the Browse page after successful sign-in
         })
         .catch((error) => {
           // If the sign-in fails, log the error message to the console

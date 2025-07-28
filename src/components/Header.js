@@ -1,24 +1,54 @@
 import React from "react";
 import Modal from "./Modals";
-import { signOut } from "firebase/auth";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../utils/firebase"; // Ensure you have your Firebase configuration set up
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const handlesignOut = () => {
     // setIsModalOpen(true);
-    const auth = getAuth();
     signOut(auth)
-      .then(() => {
-        navigate("/"); // Navigate to the home page after successful sign-out
-      })
+      .then(() => {})
       .catch((error) => {
         navigate("/error"); // Handle any errors that occur during sign-out
       });
   };
+
+  //Get the currently signed-in user
+  //onAuthStateChanged` is used to listen for changes in the user's authentication state
+  // why use used useEffect here? to ensure that the authentication state is checked when the component mounts
+  // and to dispatch the appropriate actions based on whether a user is signed in or not.
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        const { uid, email, displayName, photoURL } = user;
+
+        // Sign in case
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse"); // Navigate to the browse page if user is authenticated
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => unsubscribe(); // Cleanup the subscription on unmount
+  }, []);
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black to-transparent top-0 left-0 right-0 flex items-center justify-between">
       <img
@@ -30,7 +60,7 @@ const Header = () => {
         <div className="flex p-2">
           <img
             className="w-12 h-12 rounded-full mr-20 "
-            // src="https://avatars.githubusercontent.com/u/58945854?v=4"
+
             src={user?.photoURL}
             alt="Usericon"
           />
@@ -46,7 +76,7 @@ const Header = () => {
             title="Leaving So Soon?"
             onConfirm={() => {
               // Handle sign out logic here
-              console.log("User signed out");
+             
               handlesignOut();
             }}
             confirmText="Go Now"

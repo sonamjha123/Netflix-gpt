@@ -20,7 +20,20 @@ npm install -g firebase-tools
 
 - Implemented SignOut
 - Implemented Profile update
+- fetch from TMDB movies
 
+Bug Fixing :
+- Sign up user displayName and profile picture updated
+- if user is not logged on Redirect /browse to Login page and vice-versa
+- Unsubscribed to the onAuthStateChanged callback - good hygiene practice
+- Added hardcoded values to the constants
+- Register TMDB API & create an app & get access token
+- Get data from TMDB now playing movies list
+- Adding movie data to the store (moviesSlice)
+- DISPATCH action to store with json.results data
+- Create your own Custom Hook
+- Building Browse page
+- Building Video background
 
 Note:
 You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.
