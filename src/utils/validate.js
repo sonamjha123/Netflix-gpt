@@ -6,9 +6,6 @@ export const checkValidateData =(email, password, fullname, isSignintoggle)=>{
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
  const isfullNameValid = /^[A-Z][a-zA-Z]{3,}(?: [A-Z][a-zA-Z]*){0,2}$/.test(fullname);
 
-  console.log("checkValidateData:", "isEmailValid:", isEmailValid);
-  console.log("checkValidateData:", "isPasswordValid:", isPasswordValid);
-  console.log("checkValidateData:", "isfullNameValid:", isfullNameValid);
 
     if(!isEmailValid) return "Please enter a valid Email address";
     if(!isPasswordValid) return "Password is not valid.";

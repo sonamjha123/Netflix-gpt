@@ -10,7 +10,7 @@ const MainContainer = () => {
     return <div>Loading...</div>;
   }
   const firstMovie = movies[0];
-  console.log("First Movie:", firstMovie);
+  
   const { original_title, overview ,id} = firstMovie;
 
   return (

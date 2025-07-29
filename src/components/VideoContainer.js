@@ -1,32 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addTrailerMovies } from "../utils/moviesSlice";
+import useTrailerVideos from "../hooks/usetrailerVideos";
 const VideoContainer = ({ movieId }) => {
-  const [trailerId, setTrailerid] = useState(null);
-  const fetchVideos = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      API_OPTIONS
-    );
-    const data = await response.json();
-    const filteredData = data.results.filter(
-      (video) => video.type === "Trailer"
-    );
-    const trailer = filteredData.length ? filteredData[0] : data.results[0];
-    setTrailerid(trailer.key)
-    console.log("Video Data:", data.results, "Trailer:", trailer);
-  };
-  useEffect(() => {
-    fetchVideos();
-  }, []);
-
+  const trailerVideo = useSelector((store) => store.movies?.trailerMovies);
+  useTrailerVideos(movieId); //Custom hook to fetch trailer videos based on movieId
+  console.log("trailerVideo", trailerVideo);
   return (
-    <div>
+    <div className="w-screen ">
       <iframe
-        width="960"
-        height="960"
-        src={"https://www.youtube.com/embed/"+ trailerId}
+        className="w-screen aspect-video"
+        src={
+          "https://www.youtube.com/embed/" +
+          trailerVideo?.key +
+          "?autoplay=1&mute=1"
+        }
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

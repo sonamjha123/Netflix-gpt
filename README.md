@@ -29,11 +29,16 @@ Bug Fixing :
 - Added hardcoded values to the constants
 - Register TMDB API & create an app & get access token
 - Get data from TMDB now playing movies list
-- Adding movie data to the store (moviesSlice)
-- DISPATCH action to store with json.results data
-- Create your own Custom Hook
-- Building Browse page
-- Building Video background
+- Creating Custom Hook for Trailer video
+- create movieSlice
+- update store with movie Data
+- Planninf for MainContainer & SecondaryContainer
+- Fetch Data for Trailer Video
+- Update Store with Trailer Video Data
+- Embedded the YouTube video and make it autoplay and mute
+- Tailwind Classes to make Main Container look awesome.
+
+
 
 Note:
 You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.
