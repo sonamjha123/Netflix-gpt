@@ -40,9 +40,9 @@ Bug Fixing :
 - Build Secondarycontainer
 - Build Movie List
 - Build Movie Card
-- TMDB Image CDN
-
-
+- TMDB Image CDN URL
+- Made Browse page amazing with Tailwind CSS
+- usePopular, useTopRated, useUpcoming Movies.
 
 
 Note:
