@@ -7,7 +7,7 @@ import useTrailerVideos from "../hooks/usetrailerVideos";
 const VideoContainer = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerMovies);
   useTrailerVideos(movieId); //Custom hook to fetch trailer videos based on movieId
-  console.log("trailerVideo", trailerVideo);
+
   return (
     <div className="w-screen ">
       <iframe

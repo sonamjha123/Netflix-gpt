@@ -37,6 +37,11 @@ Bug Fixing :
 - Update Store with Trailer Video Data
 - Embedded the YouTube video and make it autoplay and mute
 - Tailwind Classes to make Main Container look awesome.
+- Build Secondarycontainer
+- Build Movie List
+- Build Movie Card
+- TMDB Image CDN
+
 
 
 
