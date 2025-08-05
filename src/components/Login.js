@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import { useState, useRef } from "react";
 import { checkValidateData } from "../utils/validate";
-import { photoURL } from "../utils/constants";
+import { BG_URL, photoURL } from "../utils/constants";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -115,7 +115,7 @@ const Login = () => {
         <Header />
         <img
           className="w-full h-full"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/FR-en-20250630-TRIFECTA-perspective_70e52842-38a0-4ff9-841d-117202b467d4_small.jpg"
+          src={BG_URL}
           alt="Netflix promotional background"
         />
       </div>

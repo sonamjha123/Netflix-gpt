@@ -8,9 +8,16 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constants"; // Import supported languages
+import { toggleGptSearchView } from "../utils/gptsearchSlice"; // Import the action to toggle GPT search view
+import { changeLanguage } from "../utils/configSlice"; // Import the action to change language
+
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gptSearch.showGptSearch);
+
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate for navigation
   const handlesignOut = () => {
@@ -29,7 +36,6 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        
         const { uid, email, displayName, photoURL } = user;
 
         // Sign in case
@@ -49,6 +55,13 @@ const Header = () => {
     });
     return () => unsubscribe(); // Cleanup the subscription on unmount
   }, []);
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView()); // Dispatch the action to toggle GPT search view
+  };
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value; // Get the selected language from the dropdown
+    dispatch(changeLanguage(selectedLanguage)); // Dispatch the action to change the language
+  };
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black to-transparent top-0 left-0 right-0 flex items-center justify-between">
       <img
@@ -58,25 +71,47 @@ const Header = () => {
       />
       {user && (
         <div className="flex p-2">
-          <img
-            className="w-12 h-12 rounded-full mr-20 "
+          {showGptSearch && (
+            <select
+              className="bg-gray-600 text-white mr-6 py-1 rounded ml-4 "
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((language) => (
+                <option key={language.identifier} value={language.identifier}>
+                  {language.icon} {language.name}
+                </option>
+              ))}
+              {/* Add more languages as needed */}
+            </select>
+          )}
 
+          <button
+            className="  bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700 transition-colors duration-300 ease-in-out"
+            onClick={handleGptSearchClick}
+          >
+            {" "}
+            {showGptSearch ? "🏠 Home" : " 🔍 GPTSearch"}
+          </button>
+          <img
+            className="h-8 w-50 rounded-sm mr-5 px-5"
             src={user?.photoURL}
             alt="Usericon"
           />
           <button
             onClick={() => setIsModalOpen(true)}
-            className="absolute top-5 right-4 bg-red-600 text-white px-4 py-2 rounded"
+            title="Sign out"
+            className="absolute top-5 right-4 bg-red-600 text-white px-4 py-2 rounded
+             hover:bg-red-700 transition-colors duration-300 ease-in-out"
           >
-            Sign Out
+            ⎋
           </button>
+
           <Modal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             title="Leaving So Soon?"
             onConfirm={() => {
               // Handle sign out logic here
-             
               handlesignOut();
             }}
             confirmText="Go Now"

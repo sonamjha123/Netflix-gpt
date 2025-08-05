@@ -43,7 +43,8 @@ Bug Fixing :
 - TMDB Image CDN URL
 - Made Browse page amazing with Tailwind CSS
 - usePopular, useTopRated, useUpcoming Movies.
-
+- GPT Search feature
+- Build MultiLanguage Pages
 
 Note:
 You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.
