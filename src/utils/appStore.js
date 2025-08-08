@@ -11,6 +11,7 @@ const appStore = configureStore({
     movies: moviesReducer, // Assuming moviesReducer is imported from moviesSlice.js
     gptSearch: gptSearchReducer, // Import and add the GPT search reducer
     config: configReducer, // Import and add the config reducer
+    
   },
 });
 

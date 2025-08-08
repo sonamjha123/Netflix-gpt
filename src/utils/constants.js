@@ -26,3 +26,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "ja", name: "Japanese", icon: "🇯🇵"},
   
 ];
+
+
