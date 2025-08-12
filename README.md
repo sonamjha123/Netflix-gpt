@@ -45,6 +45,9 @@ Bug Fixing :
 - usePopular, useTopRated, useUpcoming Movies.
 - GPT Search feature
 - Build MultiLanguage Pages
+- Build GPT Search Suggestions using Open AI - Gemini API and TMDB API.
+- Understanding Memoization of data in our apps
+- Responsive UI
 
 Note:
 You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.

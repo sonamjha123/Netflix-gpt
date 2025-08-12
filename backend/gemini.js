@@ -4,9 +4,9 @@ require("dotenv").config();
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const getGeminiResponse = async (userPrompt) => {
-	const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
-	const formattedPrompt = `
+  const formattedPrompt = `
 You are an API endpoint. Return only a raw JSON object as a response. No markdown formatting. No code blocks. No explanations.
 
 Rules:
@@ -30,25 +30,25 @@ Now, based on the user's request below, return exactly five movie titles in this
 User request: ${userPrompt}
 `;
 
-	console.log("📤 Sending to Gemini:", formattedPrompt);
+  console.log("📤 Sending to Gemini:", formattedPrompt);
 
-	const result = await model.generateContent(formattedPrompt);
-	const response = await result.response;
+  const result = await model.generateContent(formattedPrompt);
+  const response = await result.response;
 
-	let text = response.text();
+  let text = response.text();
 
-	// ✂️ Remove markdown block (```json)
-	text = text.replace(/```json|```/g, "").trim();
+  // ✂️ Remove markdown block (```json)
+  text = text.replace(/```json|```/g, "").trim();
 
-	// 🧠 Handle stringified JSON response like: '"{...}"'
-	if (text.startsWith('"') && text.endsWith('"')) {
-		text = JSON.parse(text); // remove outer quotes
-	}
+  // 🧠 Handle stringified JSON response like: '"{...}"'
+  if (text.startsWith('"') && text.endsWith('"')) {
+    text = JSON.parse(text); // remove outer quotes
+  }
 
-	// ✅ Parse actual JSON string to JS object
-	const json = typeof text === "string" ? JSON.parse(text) : text;
+  // ✅ Parse actual JSON string to JS object
+  const json = typeof text === "string" ? JSON.parse(text) : text;
 
-	return json;
+  return json;
 };
 
 module.exports = getGeminiResponse;
