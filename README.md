@@ -64,7 +64,7 @@ After deploying, view your app at : netflixgpt-b45b2.web.app
 
 # Features
 - Login/Sign up 
- - Sign In/ Sign up Form
+ - Sign In / Sign up Form
  - redirect to Browse page
 - Browse(after authentication)
  - Header

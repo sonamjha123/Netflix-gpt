@@ -63,11 +63,12 @@ const Login = () => {
           updateProfile(user, {
             displayName: fullnameRef.current.value,
             photoURL: photoURL,
-          }).then(() => {
+          })
+            .then(() => {
               //dispatch here again for displayname and photoURL
               const { uid, email, displayName, photoURL } = auth.currentUser;
               // Sign in case
-              
+
               dispatch(
                 addUser({
                   uid: uid,
@@ -76,8 +77,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-             
-              
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -111,59 +110,61 @@ const Login = () => {
   };
   return (
     <>
-      <div className="absolute">
+      <div>
         <Header />
-        <img
-          className="w-full h-full"
-          src={BG_URL}
-          alt="Netflix promotional background"
-        />
-      </div>
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 -left-0 bg-opacity-80 rounded shadow-lg"
-      >
-        <h1 className="text-3xl font-bold text-white mb-6 py-4">
-          {isSignintoggle ? "Sign Up" : "Sign In"}
-        </h1>
-        {isSignintoggle && (
+        <div className="absolute">
+          <img
+            className="h-screen w-screen object-cover"
+            src={BG_URL}
+            alt="Netflix promotional background"
+          />
+        </div>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="absolute  w-full md:w-3/12 p-12 bg-black my-36 mx-auto right-0 -left-0 bg-opacity-80 rounded shadow-lg"
+        >
+          <h1 className=" text-2xl md:text-3xl font-bold text-white mb-6 py-4">
+            {isSignintoggle ? "Sign Up" : "Sign In"}
+          </h1>
+          {isSignintoggle && (
+            <input
+              ref={fullnameRef}
+              type="text"
+              placeholder="Full Name"
+              className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
+            />
+          )}
           <input
-            ref={fullnameRef}
+            ref={emailRef}
             type="text"
-            placeholder="Full Name"
+            placeholder="Email or mobile number"
             className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
           />
-        )}
-        <input
-          ref={emailRef}
-          type="text"
-          placeholder="Email or mobile number"
-          className="w-full p-2 mb-4 border bg-black border-gray-500 text-white rounded"
-        />
 
-        <input
-          ref={passwordRef}
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 mb-4 border bg-black text-white border-gray-500 rounded"
-        />
-        <p className="text-red-500 font-bold text-sm py-4">{errorMessaqe}</p>
-        <button
-          type="submit"
-          className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700"
-          onClick={hanldeClickValidate}
-        >
-          {isSignintoggle ? "Sign Up" : "Sign In"}
-        </button>
-        <p
-          className="text-gray-400 text-sm py-2 mt-4 cursor-pointer hover:text-white"
-          onClick={handleToggle}
-        >
-          {isSignintoggle
-            ? "Already have an account ? Sign In"
-            : "New to Netflix ? Sign up now"}
-        </p>
-      </form>
+          <input
+            ref={passwordRef}
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 mb-4 border bg-black text-white border-gray-500 rounded"
+          />
+          <p className="text-red-500 font-bold text-sm py-4">{errorMessaqe}</p>
+          <button
+            type="submit"
+            className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700"
+            onClick={hanldeClickValidate}
+          >
+            {isSignintoggle ? "Sign Up" : "Sign In"}
+          </button>
+          <p
+            className="text-gray-400 text-sm py-2 mt-4 cursor-pointer hover:text-white"
+            onClick={handleToggle}
+          >
+            {isSignintoggle
+              ? "Already have an account ? Sign In"
+              : "New to Netflix ? Sign up now"}
+          </p>
+        </form>
+      </div>
     </>
   );
 };

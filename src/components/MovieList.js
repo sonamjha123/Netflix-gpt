@@ -4,8 +4,8 @@ import MovieCard from "./MovieCard";
 const MovieList = ({ title, moviesplaying }) => {
   return (
     <div>
-      <div className="p-4 m-1 bg-black  bg-opacity-80 rounded shadow-lg w-full">
-        <h1 className="text-2xl p-2 text-white">{title}</h1>
+      <div className="p-4  bg-black  bg-opacity-80 shadow-lg w-full">
+        <h1 className=" text-sm md:text-2xl p-2 text-white">{title}</h1>
         <div className="flex flex-wrap">
             {moviesplaying?.map((movie) => (    
                 <MovieCard
