@@ -9,6 +9,7 @@ export const API_OPTIONS = {
     Authorization:
       "Bearer " + process.env.REACT_APP_TMDB_KEY, // Use the TMDB key from .env
   },
+     
 };
 
 export const Image_CDN = "https://image.tmdb.org/t/p/w200";

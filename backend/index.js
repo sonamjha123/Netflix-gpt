@@ -6,22 +6,15 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
-try {
-  const corsOptions = {
-    origin: ['http://localhost:3000'],
-    optionsSuccessStatus: 200
-  };
-  app.use(cors(corsOptions));
-} catch (err) {
-  console.error("Error in Gemini API:", err.message, err.stack);
-  // handle the error here
-}
 // app.use(cors(corsOptions));
 app.post("/api/ask", async (req, res) => {
   const { prompt } = req.body;
-
 
   try {
     const reply = await getGeminiresponse(prompt);
