@@ -66,8 +66,9 @@ const Header = () => {
     <div className="absolute w-screen px-20 py-2 bg-gradient-to-b from-black to-transparent top-0 left-0 right-0 flex flex-col md:flex-row items-center justify-between">
       <img
         className="w-44 mx-auto md:mx-0"
-        src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-07-01/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7f67-86aa-d06aa27c6cc0/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="Netflix logo"
+        // src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-07-01/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7f67-86aa-d06aa27c6cc0/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+        alt="Streamflix logo"
       />
       {user && (
         <div className="flex p-2 justify-between">
@@ -100,7 +101,7 @@ const Header = () => {
           <button
             onClick={() => setIsModalOpen(true)}
             title="Sign out"
-            className="absolute md:top-6 md:right-6 right-8 mb-1 bg-red-500 text-white   px-3  md:py-1 mt-1 rounded
+            className="absolute md:top-3 md:right-6 right-8 mb-1 bg-red-500 text-white   px-3  md:py-1 mt-1 rounded
              hover:bg-red-800 transition-colors duration-300 ease-in-out"
           >
             ⎋

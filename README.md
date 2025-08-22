@@ -75,6 +75,6 @@ After deploying, view your app at : netflixgpt-b45b2.web.app
       - MovieLists * N
 - netflixGPT
     - SearchBar
-    - Movie Suggestions    
+    - Movie Suggestions  
 
 

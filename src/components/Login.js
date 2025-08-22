@@ -116,7 +116,7 @@ const Login = () => {
           <img
             className="h-screen w-screen object-cover"
             src={BG_URL}
-            alt="Netflix promotional background"
+            alt="Streamflix promotional background"
           />
         </div>
         <form
@@ -161,7 +161,7 @@ const Login = () => {
           >
             {isSignintoggle
               ? "Already have an account ? Sign In"
-              : "New to Netflix ? Sign up now"}
+              : "New to Streamflix ? Sign up now"}
           </p>
         </form>
       </div>
