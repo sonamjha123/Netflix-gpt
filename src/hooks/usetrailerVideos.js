@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,7 @@ const useTrailerVideos = (movieId) => {
 
   useEffect(() => {
     !trailerMovies && fetchVideos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 

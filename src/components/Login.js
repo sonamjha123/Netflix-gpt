@@ -98,7 +98,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           // If the sign-in is successful, log the user object to the console
-          const user = userCredential.user;
+          
         })
         .catch((error) => {
           // If the sign-in fails, log the error message to the console

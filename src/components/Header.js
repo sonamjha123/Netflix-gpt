@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "./Modals";
-import { getAuth, signOut } from "firebase/auth";
+import {  signOut } from "firebase/auth";
 import { auth } from "../utils/firebase"; // Ensure you have your Firebase configuration set up
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { useSelector } from "react-redux";
@@ -54,7 +54,7 @@ const Header = () => {
       }
     });
     return () => unsubscribe(); // Cleanup the subscription on unmount
-  }, []);
+  }, [dispatch, navigate]);
   const handleGptSearchClick = () => {
     dispatch(toggleGptSearchView()); // Dispatch the action to toggle GPT search view
   };
