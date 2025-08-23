@@ -31,13 +31,3 @@ const Browse = () => {
 };
 export default Browse;
 
-{
-  /* 
-      MainContainer
-       - VideoBackground
-       - VideoTitle
-      SecondaryContainer
-       - MovieList * n
-        - Card * n
-      */
-}
