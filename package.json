@@ -2,6 +2,7 @@
   "name": "netflix-gpt",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@google/genai": "^1.13.0",
     "@heroicons/react": "^2.2.0",
@@ -30,7 +31,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": ".",
+  
   "browserslist": {
     "production": [
       ">0.2%",
