@@ -33,7 +33,7 @@ const GPTSearchBar = () => {
     let recommendedMovies = [];
 
     try {
-      const response = await fetch("http://localhost:3001/api/ask", {
+      const response = await fetch("/api/index", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),

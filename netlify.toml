@@ -1,0 +1,13 @@
+[build]
+  base = "."                # Root of your project
+  publish = "build"         # React build output
+  functions = "backend/api" # Location of Netlify functions
+
+[dev]
+  functions = "backend/api"
+  publish = "build"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
