@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "./Modals";
-import {  signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase"; // Ensure you have your Firebase configuration set up
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants"; // Import supported languages
 import { toggleGptSearchView } from "../utils/gptsearchSlice"; // Import the action to toggle GPT search view
 import { changeLanguage } from "../utils/configSlice"; // Import the action to change language
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -106,7 +107,7 @@ const Header = () => {
           >
             ⎋
           </button>
-
+          <ThemeToggle />
           <Modal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}

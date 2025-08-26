@@ -13,7 +13,7 @@ const MainContainer = () => {
   const { original_title, overview ,id} = firstMovie;
 
   return (
-    <div className="pt-[35%] md:pt-20 bg-gradient-to-b from-black to-transparent">
+    <div className="  dark:bg-netflix-dark dark:text-neutral-100 pt-[35%] md:pt-20  bg-gradient-to-b from-white to-transparent">
       <VideoTitle title={original_title} overview={overview} />
       <VideoContainer movieId={id} />
     </div>

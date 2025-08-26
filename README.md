@@ -78,3 +78,6 @@ After deploying, view your app at : netflixgpt-b45b2.web.app
     - Movie Suggestions  
 
 
+# Advanced Features
+- Dark/light mode
+- 

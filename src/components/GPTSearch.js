@@ -12,7 +12,7 @@ const GptSearch = () => {
           alt="Netflix promotional background"
         />
       </div>
-      <div className="">
+      <div className=" dark:bg-netflix-dark dark:text-neutral-100 min-h-screen relative z-20">
         <GPTSearchBar />
         <GPTMovieSuggestions />
       </div>
