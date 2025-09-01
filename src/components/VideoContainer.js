@@ -5,11 +5,10 @@ import useTrailerVideos from "../hooks/usetrailerVideos";
 const VideoContainer = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerMovies);
   useTrailerVideos(movieId); //Custom hook to fetch trailer videos based on movieId
-
   return (
-    <div className="w-screen ">
+    <div className="w-screen">
       <iframe
-        className="w-screen aspect-video"
+        className="iframe-class w-screen aspect-video"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +
