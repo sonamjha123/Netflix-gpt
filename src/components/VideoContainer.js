@@ -2,9 +2,10 @@
 import { useSelector } from "react-redux";
 
 import useTrailerVideos from "../hooks/usetrailerVideos";
-const VideoContainer = ({ movieId }) => {
+const VideoContainer = ({ movieId}) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerMovies);
   useTrailerVideos(movieId); //Custom hook to fetch trailer videos based on movieId
+  const playVideo = useSelector((store) => store.movies?.playVideo);
   return (
     <div className="w-screen">
       <iframe
@@ -12,7 +13,7 @@ const VideoContainer = ({ movieId }) => {
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +
-          "?autoplay=1&mute=1"
+          "?autoplay=" + (playVideo ? 1 : 0) + "&mute=1"
         }
         title="YouTube video player"
         frameBorder="0"
