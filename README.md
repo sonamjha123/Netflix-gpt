@@ -25,11 +25,11 @@ Users can sign in, browse trending movies from TMDB, and get GPT-powered suggest
 
 ## **Tech Stack**
 
-**Frontend:** React.js, Redux Toolkit, Tailwind CSS
-**Auth & Hosting:** Firebase
-**AI & APIs:** OpenAI GPT / Gemini API, TMDB API
-**Deployment:** Firebase Hosting
-**Tools:** Git, VS Code, Postman
+* **Frontend:** React.js, Redux Toolkit, Tailwind CSS
+* **Auth & Hosting:** Firebase, Netlify
+* **AI & APIs:** OpenAI GPT / Gemini API, TMDB API
+* **Deployment:** Firebase Hosting, Netlify
+* **Tools:** Git, VS Code, Postman
 
 ---
 
