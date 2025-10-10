@@ -45,9 +45,5 @@ Users can sign in, browse trending movies from TMDB, and get GPT-powered suggest
 
 ## **Live Demo**
 
-🔗 [streamflixmovieapp.netlify.app/browse
-Resources
-](streamflixmovieapp.netlify.app/browse
-Resources
-)
+🔗 [streamflixmovieapp.netlify.app/browse](streamflixmovieapp.netlify.app/browse)
 
