@@ -45,9 +45,9 @@ Users can sign in, browse trending movies from TMDB, and get GPT-powered suggest
 
 ## **Live Demo**
 
-🔗 [https://netflixgpt-b45b2.web.app](https://netflixgpt-b45b2.web.app)
+🔗 [streamflixmovieapp.netlify.app/browse
+Resources
+](streamflixmovieapp.netlify.app/browse
+Resources
+)
 
----
-
-
-Would you like me to also write a **short GitHub project description** (the one-line summary that appears below the repo name, e.g., “AI-powered movie discovery app built with React & Firebase”)?
